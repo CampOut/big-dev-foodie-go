@@ -1,31 +1,45 @@
 import React, { useState, useRef } from 'react';
-import Overlay from 'react-bootstrap/Overlay';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+
+const CartEmpty = React.forwardRef(
+  ({ popper, children, show: _, ...props }, ref) => {
+    return <Popover ref={ref} body {...props}></Popover>;
+  }
+);
+
+
+const emptyCart = (
+  <Popover id='empty-cart-popover'>
+    <Popover.Body className='popover-wrapper'>
+      <div className='popover-icon-parent'>
+        <i className='food-shopping-cart-icon empty-icon'></i>
+        <h4 className='popover-header'>Your cart is empty</h4>
+        <div className='add-items-txt'>Add items from a restaurant or store to start a new cart</div>
+      </div>
+      <div className='popover-btn-wrapper'>
+
+      </div>
+    </Popover.Body>
+  </Popover>
+)
 
 const CartBtn = (props) => {
-  const [show, setShow] = useState(false);
-  const target = useRef(null);
+  const items = [];
 
   return (
-    <>
-      <button className='cart-btn' ref={target} onClick={() => setShow(!show)}>
-        <div className='icon-button-child' />
-        <div className='icon-button-wrapper'>
-          <i className='food-shopping-cart-icon'></i>
-          {props.items && props.items.length ? (
-            <div className='badge'>
-              <div className='item-count'>{props.items.length}</div>
-            </div>
-          ) : (
-            <div className='badge'>
-              <div className='item-count'>0</div>
-            </div>
-          )}
-        </div>
+    <OverlayTrigger
+      trigger='click'
+      overlay={items && items.length > 0 ? '' : emptyCart} 
+      placement='bottom'
+    >
+      <button className='btn position-relative cart-btn'>
+        <i className='food-shopping-cart-icon cart-icon'></i>
+        <span className='position-absolute top-0 start-100 translate-middle badge rounded pill bg-primary'>
+          0
+        </span>
       </button>
-      <Overlay target={target.current} show={show} placement='center'>
-        
-      </Overlay>
-    </>
+    </OverlayTrigger>
   );
 };
 

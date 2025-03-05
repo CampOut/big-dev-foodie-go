@@ -20,9 +20,12 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import 'bootstrap/scss/grid';
 @import 'bootstrap/scss/helpers';
 
+@import 'bootstrap/scss/badge';
+
 @import 'bootstrap/scss/utilities/api';
 
 @import './layout';
 @import './components/delivery-options';
 @import './components/button';
 @import './components/header';
+@import './components/shopping-cart';
