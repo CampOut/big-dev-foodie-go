@@ -1,0 +1,47 @@
+header {
+    .logo {
+        width: 6.313rem;
+        position: relative;
+        height: 1.875rem;
+        font-size: 1.25rem;
+    }
+
+    .delivery-options-parent {
+        width: 30.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0rem 0rem 0rem 6.25rem;
+        box-sizing: border-box;
+        width: 38.5rem;
+    
+    }
+
+    .icon-button-parent {
+        width: 21rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0rem;
+    }
+
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    box-sizing: border-box; 
+    gap: 0;
+    text-align: left;
+    color: black;
+
+   
+}
+
+.address-btn {
+    padding: 0;
+}

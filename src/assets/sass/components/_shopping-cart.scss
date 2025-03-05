@@ -1,0 +1,19 @@
+.cart-icon {
+    font-size: 1.3rem;
+}
+
+.cart-btn {
+    height: 2rem;
+    width: 2rem;
+
+    .pill {
+        border-radius: 50% !important;
+    }
+}
+
+
+#empty-cart-popover {
+    width: 24rem;
+    max-width: 100%;
+    min-width: 100%;
+}

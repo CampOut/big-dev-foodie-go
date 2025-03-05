@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600, 'semibold';
+}
+
+$font-family-base: 'Poppins';
+$font-size-base: 1rem;
+
+$black-20: rgba(0, 0, 0, 0.2);
+
+$blueGray: rgba(227, 232, 235, 1);
+$blueGray-20: rgba(227, 232, 235, 0.2);
+
+$green: rgba(15, 169, 88, 1);
+$darkGreen: rgba(56, 142, 60, 1);
+
+$primary: $green;
+
+$custom-colors: (
+  'black-20': $black-20,
+  'blue-gray': $blueGray,
+  'blue-gray-20': $blueGray-20,
+  'dark-green': $darkGreen,
+);
