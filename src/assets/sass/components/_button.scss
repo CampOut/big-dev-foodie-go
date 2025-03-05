@@ -6,7 +6,7 @@ button {
 }
 
 .btn {
-  width: 100%;
+
   position: relative;
   display: flex;
   flex-direction: row;
@@ -107,5 +107,11 @@ button {
 }
 
 .address-btn {
-  color: $green;
+  i {
+    color: $green;
+  }
+
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
 }
