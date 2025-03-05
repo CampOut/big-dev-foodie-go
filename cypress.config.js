@@ -4,6 +4,8 @@ import vitePreprocessor from 'cypress-vite';
 
 export default defineConfig({
   projectId: 'f7a4x7',
+  viewportHeight: 900,
+  viewportWidth: 1200,
   e2e: {
     experimentalStudio: true,
     baseUrl: 'http://localhost:5173',
