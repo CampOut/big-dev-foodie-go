@@ -1,46 +1,85 @@
-import React, { useState, useRef } from 'react';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
+import { useState, useRef, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'motion/react';
+import Button from '../Button';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
-const CartEmpty = React.forwardRef(
-  ({ popper, children, show: _, ...props }, ref) => {
-    return <Popover ref={ref} body {...props}></Popover>;
-  }
-);
+import { useSelector } from 'react-redux';
+import { selectCartItems, selectTotalItems } from '../../store/cartSlice';
 
-
-const emptyCart = (
-  <Popover id='empty-cart-popover'>
-    <Popover.Body className='popover-wrapper'>
-      <div className='popover-icon-parent'>
-        <i className='food-shopping-cart-icon empty-icon'></i>
-        <h4 className='popover-header'>Your cart is empty</h4>
-        <div className='add-items-txt'>Add items from a restaurant or store to start a new cart</div>
-      </div>
-      <div className='popover-btn-wrapper'>
-
-      </div>
-    </Popover.Body>
-  </Popover>
-)
-
-const CartBtn = (props) => {
-  const items = [];
-
+const EmptyCart = ({ setIsOpen }) => {
   return (
-    <OverlayTrigger
-      trigger='click'
-      overlay={items && items.length > 0 ? '' : emptyCart} 
-      placement='bottom'
-    >
-      <button className='btn position-relative cart-btn'>
-        <i className='food-shopping-cart-icon cart-icon'></i>
-        <span className='position-absolute top-0 start-100 translate-middle badge rounded pill bg-primary'>
-          0
-        </span>
-      </button>
-    </OverlayTrigger>
+    <div className='empty-cart'>
+      <i className='food-shopping-cart-icon'></i>
+      <h3 className='empty-cart-title'>Your cart is empty</h3>
+      <p className='empty-cart-text'>
+        Add items from a restaurant or store to start a new cart
+      </p>
+      <Button onClick={() => setIsOpen(false)} style={{ width: '100%' }}>
+        Start shopping
+      </Button>
+    </div>
   );
 };
 
-export default CartBtn;
+const CartButton = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const items = useSelector(selectCartItems);
+  const totalItems = useSelector(selectTotalItems);
+  const dropdownRef = useRef(null);
+
+  const toggleCart = () => setIsOpen(!isOpen);
+
+  useClickOutside(dropdownRef, () => setIsOpen(false));
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  return (
+    <div className='cart-container' ref={dropdownRef}>
+      <button
+        onClick={toggleCart}
+        className='cart-button'
+        aria-label='shopping cart'
+      >
+        <i className='food-shopping-cart-icon'></i>
+        {totalItems > 0 && (
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className='badge'
+          >
+            {totalItems}
+          </motion.div>
+        )}
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className='dropdown'
+          >
+            {items.length === 0 ? (
+              <EmptyCart setIsOpen={setIsOpen} />
+            ) : (
+              <p>filled</p>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default CartButton;

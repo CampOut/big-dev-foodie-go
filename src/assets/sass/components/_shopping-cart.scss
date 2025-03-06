@@ -1,19 +1,73 @@
-.cart-icon {
-    font-size: 1.3rem;
+.cart-container {
+    position: relative;
 }
 
-.cart-btn {
-    height: 2rem;
-    width: 2rem;
+.cart-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+}
 
-    .pill {
-        border-radius: 50% !important;
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: $primary;
+    color: white;
+    font-size: .75rem;
+    font-weight: bold;
+    border-radius: 9999px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    margin-top: .5rem;
+    width: 350px;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 50;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .dropdown {
+        width: 400px;
     }
 }
 
+.empty-cart {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-#empty-cart-popover {
-    width: 24rem;
-    max-width: 100%;
-    min-width: 100%;
+    i {
+        height: 48px;
+        width: 48px;
+        font-size: 48px;
+        margin-bottom: 1rem;
+        color: $black;
+    }
+
+    .empty-cart-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-cart-text {
+        color: gray;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
 }
