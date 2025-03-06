@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -11,7 +12,12 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "test": "yarn cy:open",
-    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build"
+    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build",
+    "cy:open-e2e": "cypress open --e2e --browser chrome",
+    "cy:open-unit": "cypress open --component --browser chrome",
+    "cy:run-e2e": "cypress run --e2e",
+    "cy:run-unit": "cypress run --component",
+    "cy:e2e": "start-server-and-test start http-get://localhost:5173 cy:open-e2e"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
@@ -27,6 +33,7 @@
     "sass-embedded": "^1.85.1"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.13.12",
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

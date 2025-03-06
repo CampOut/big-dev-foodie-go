@@ -45,6 +45,7 @@ const CartButton = () => {
   return (
     <div className='cart-container' ref={dropdownRef}>
       <button
+        data-test='cart-btn'
         onClick={toggleCart}
         className='cart-button'
         aria-label='shopping cart'
@@ -69,6 +70,7 @@ const CartButton = () => {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
             className='dropdown'
+            data-test='cart-dropdown'
           >
             {items.length === 0 ? (
               <EmptyCart setIsOpen={setIsOpen} />

@@ -1,12 +1,22 @@
 import { defineConfig } from 'cypress';
-import viteConfig from './vite.config.js';
 import vitePreprocessor from 'cypress-vite';
 
 export default defineConfig({
-  projectId: 'f7a4x7',
+  projectId: '9uyf7u',
   viewportHeight: 900,
   viewportWidth: 1200,
+  env: {
+    codeCoverage: {
+      exclude: 'cypress/**/*.*',
+    },
+  },
+  reporter: 'junit',
+  reporterOptions: {
+    mochaFile: 'results/test-[hash].xml',
+    toConsole: true,
+  },
   e2e: {
+    supportFile: false,
     experimentalStudio: true,
     baseUrl: 'http://localhost:5173',
     setupNodeEvents(on) {
@@ -18,9 +28,9 @@ export default defineConfig({
     devServer: {
       framework: 'react',
       bundler: 'vite',
-      viteConfig: {
-        ...viteConfig,
-      },
+    },
+    setupNodeEvents(on, config) {
+      // eslint-disable-next-line no-undef
     },
   },
 });

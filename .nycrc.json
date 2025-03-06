@@ -1,0 +1,13 @@
+{
+    "all": true,
+    "check-coverage": true,
+    "include": [
+        "src/**/*.js",
+        "src/**/*.jsx"
+    ],
+     "exclude": [
+        "cypress/**/*.*",
+        "**/*.d.ts",
+        "**/*.cy.jsx",
+        "**/*.cy.js"]
+}
